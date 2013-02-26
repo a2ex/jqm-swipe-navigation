@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Freebie : Slide View Panel starter - jQuery mobile 1.3</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="apple-touch-icon" href="iphon_tetris_icon.png"/>
+	<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-startup-image" href="startup.png" /> -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	
+	<script type="text/javascript">
+		
+		// better than $(document).ready(function(){ .. });
+		$(document).bind('pageinit',function(){
+			
+			// ready dom ?
+			console.log('dom ? - dom : yeah am ready bro !');
+		
+			$('a.force-reload').on('click', function() {
+				var url = $(this).attr('href');
+				$.mobile.changePage( url, { reloadPage: true, transition: "none"} );
+				
+				// page refreshed ?
+				console.log('dom : page refreshed bro !');
+			});
+			
+			
+			$(document).on("swipeleft swiperight", ".swipe", function(e) {
+		        // We check if there is no open panel on the page because otherwise
+		        // a swipe to close the left panel would also open the right panel (and v.v.).
+		        // We do this by checking the data that the framework stores on the page element (panel: open).
+		        if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+		            if ( e.type === "swipeleft"  ) {
+		                $( "#rightpanel" ).panel( "open" );
+		            } else if ( e.type === "swiperight" ) {
+		                $( "#leftpanel" ).panel( "open" );
+		            }
+		        }
+			});
+			
+			
+			
+			$(document).on("swipeleft swiperight", ".swipelr", function(e) {
+		        // We check if there is no open panel on the page because otherwise
+		        // a swipe to close the left panel would also open the right panel (and v.v.).
+		        // We do this by checking the data that the framework stores on the page element (panel: open).
+		        if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+		            if ( e.type === "swipeleft"  ) {
+		                $( "#rpanel" ).panel( "open" );
+		            } else if ( e.type === "swiperight" ) {
+		                $( "#lpanel" ).panel( "open" );
+		            }
+		        }
+			});
+		
+		});
+	
+	</script>
+</head>
+<body>
+
+<!-- Start of first page -->
+<div data-role="page" id="foo" class="swipe">
+	<div data-role="header" data-position="fixed">
+		<a href="#leftpanel" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true"></a>
+		<h1>Mobile starter</h1>
+		<a href="#foo" class="force-reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-inline="true"></a>
+	</div><!-- /header -->
+	<div data-role="content">
+		<p>I'm first div data-role="page" in the source order so I'm shown as the page.</p>
+		<p>View internal page called <a href="#bar">bar</a> to see right panel in action.</p>
+		
+		<p>bonus : see left/right slideView menu <a href="#foobar">on same page</a>.. awes..</p>
+	</div><!-- /content -->
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+	<div data-role="panel" id="leftpanel" data-position="left" data-display="reveal" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-closed">
+        <div class="ui-panel-inner"><h3>Left Panel: Reveal</h3><p>This panel is positioned on the left with the reveal display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left"><span class="ui-btn-inner"><span class="ui-btn-text">Close panel</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+		</div>
+	</div>
+</div><!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="bar" class="swipe">
+	<div data-role="header" data-position="fixed">
+		<a href="#" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+		<h1>Starter mobile</h1>
+		<a href="#rightpanel" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true"></a>
+	</div><!-- /header -->
+	<div data-role="content">
+		<p>I'm second in the source order so I'm shown as the page id="bar".</p>
+		<p>View internal first page called <a href="#foo">foo</a> to this left (traditional) panel..</p>
+	</div><!-- /content -->
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+	<div data-role="panel" id="rightpanel" data-position="right" data-display="reveal" data-theme="b" class="ui-panel ui-panel-position-right ui-panel-display-reveal ui-body-b ui-panel-open">
+		<div class="ui-panel-inner"><h3>Right Panel: Reveal</h3><p>This panel is positioned on the right with the reveal display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" data-role="button" data-theme="c" data-icon="delete" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left"><span class="ui-btn-inner"><span class="ui-btn-text">Close panel</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+		</div>
+	</div>
+</div><!-- /page -->
+
+<!-- Start of third page -->
+<div data-role="page" id="foobar" class="swipelr">
+	<div data-role="header" data-position="fixed">
+		<a href="#lpanel" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true"></a>
+		<h1>Starter mobile</h1>
+		<a href="#rpanel" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true"></a>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<p>I'm second in the source order so I'm shown as the page id="bar".</p>
+		<p>View internal first page called <a href="#foo">foo</a> to this left (traditional) panel..</p>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+	<div data-role="panel" id="rpanel" data-position="right" data-display="reveal" data-theme="b" class="ui-panel ui-panel-position-right ui-panel-display-reveal ui-body-b ui-panel-open">
+		<div class="ui-panel-inner"><h3>Right Panel: Reveal</h3><p>This panel is positioned on the right with the reveal display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" data-role="button" data-theme="c" data-icon="delete" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left"><span class="ui-btn-inner"><span class="ui-btn-text">Close panel</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+		</div>
+	</div>
+	
+	<div data-role="panel" id="lpanel" data-position="left" data-display="reveal" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-closed">
+        <div class="ui-panel-inner"><h3>Left Panel: Reveal</h3><p>This panel is positioned on the left with the reveal display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left"><span class="ui-btn-inner"><span class="ui-btn-text">Close panel</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+		</div>
+	</div>
+	
+</div><!-- /page -->
+	
+</body>
+</html>
