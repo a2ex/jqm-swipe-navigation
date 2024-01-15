@@ -1,10 +1,7 @@
-jqm-swipe-navigation
-====================
+Exemples de Web Stories Google
 
-jQuery mobile (1.3) swipe (left/right) navigation panel
+https://www.autocadeau.com/
 
-Demo : http://a2ex.cc/freebies/jqm/swipe-view-starter/
+<a href="https://www.autocadeau.com/p/malette-poker-pro-jetons-ceramique/">Mallette de poker</a>
 
-Docs : http://jquerymobile.com/demos/1.3.0-beta.1/docs/panels/index.html#
-
-Follow : https://twitter.com/a2exandre
+<a href="https://www.autocadeau.com/p/meilleur-trottinette-electrique/">Trottinettes électriques</a>
